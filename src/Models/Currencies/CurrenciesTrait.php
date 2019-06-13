@@ -3,10 +3,10 @@
 namespace ByTIC\Money\Models\Currencies;
 
 /**
- * Class Currencies
+ * trait CurrenciesTrait
  *
- * @method Currency[] getAll()
- * @method Currency findByCode($code)
+ * @method CurrencyTrait[] getAll()
+ * @method CurrencyTrait findByCode($code)
  */
 trait CurrenciesTrait
 {
@@ -27,10 +27,16 @@ trait CurrenciesTrait
 
     /**
      * @param $code
-     * @return \Currency
+     * @return CurrencyTrait
      */
     public function getByCode($code)
     {
         return $this->findOne($code);
     }
+
+    /**
+     * @param $id
+     * @return CurrencyTrait
+     */
+    abstract public function findOne($id);
 }

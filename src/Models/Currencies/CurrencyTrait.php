@@ -13,6 +13,9 @@ namespace ByTIC\Money\Models\Currencies;
 trait CurrencyTrait
 {
 
+    /**
+     * @return string
+     */
     public function getCode()
     {
         return $this->code;
