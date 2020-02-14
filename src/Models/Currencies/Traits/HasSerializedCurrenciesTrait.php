@@ -6,8 +6,7 @@ use Currencies;
 use Currency;
 
 /**
- * Class HasSerializedCurrenciesTrait
- * @package ByTIC\Money\Models\Currencies
+ * Class HasSerializedCurrenciesTrait.
  *
  * @property string $currencies
  */
@@ -22,14 +21,15 @@ trait HasSerializedCurrenciesTrait
      */
     protected $currenciesArray = null;
 
-
     /**
      * @param Currency $currency
+     *
      * @return bool
      */
     public function supportsCurrency(\Currency $currency)
     {
         $currencies = $this->getCurrenciesModels();
+
         return isset($currencies[$currency->code]);
     }
 
@@ -62,6 +62,7 @@ trait HasSerializedCurrenciesTrait
         if ($this->currenciesArray === null) {
             $this->initCurrenciesArray();
         }
+
         return $this->currenciesArray;
     }
 
@@ -85,6 +86,7 @@ trait HasSerializedCurrenciesTrait
 
     /**
      * @param $code
+     *
      * @return Currency
      */
     public function initCurrency($code)
