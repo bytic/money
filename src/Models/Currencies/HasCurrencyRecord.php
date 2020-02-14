@@ -4,6 +4,7 @@ namespace ByTIC\Money\Models\Currencies;
 
 use ByTIC\Money\Models\Currencies\CurrenciesTrait as Currency;
 use ByTIC\Money\Models\Currencies\CurrencyTrait as Currencies;
+use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class HasCurrencyRecord.
@@ -30,11 +31,11 @@ trait HasCurrencyRecord
     }
 
     /**
-     * @return Currencies
+     * @return \Nip\Records\AbstractModels\RecordManager|CurrenciesTrait
      */
     public function getCurrenciesManager()
     {
-        return \Currencies::instance();
+        return currencyManager();
     }
 
     /**

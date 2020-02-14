@@ -2,9 +2,13 @@
 
 namespace ByTIC\Money\Models\Currencies\Traits\HasCurrencyCode;
 
+use ByTIC\Money\Models\Currencies\CurrencyTrait;
+use Nip\Records\Record;
+
 /**
  * Class RecordTrait.
  *
+ * @property string $amount
  * @property string $currency_code
  */
 trait RecordTrait
@@ -20,7 +24,7 @@ trait RecordTrait
     }
 
     /**
-     * @return \Currency
+     * @return CurrencyTrait|Record
      */
     public function getCurrency()
     {
@@ -32,9 +36,9 @@ trait RecordTrait
     }
 
     /**
-     * @param \Currency $c
+     * @param CurrencyTrait|Record $c
      */
-    public function setCurrency(\Currency $c)
+    public function setCurrency(Record $c)
     {
         $this->_currency = $c;
         $this->setCurrencyCode($c->code);
@@ -42,7 +46,7 @@ trait RecordTrait
 
     public function initCurrency()
     {
-        $this->_currency = \Currencies::instance()->getByCode($this->getCurrencyCode());
+        $this->_currency = currencyManager()->getByCode($this->getCurrencyCode());
     }
 
     /**
@@ -60,7 +64,7 @@ trait RecordTrait
      */
     public function setCurrencyCode($code)
     {
-        $c = \Currencies::instance()->getByCode($code);
+        $c = currencyManager()->getByCode($code);
         if ($c) {
             $this->currency_code = $code;
             $this->_currency = $c;

@@ -11,7 +11,10 @@
   "autoload": {
     "psr-4": {
       "ByTIC\\Money\\": "src"
-    }
+    },
+    "files": [
+      "src/functions/general.php",
+    ]
   },
   "autoload-dev": {
     "psr-4": {
