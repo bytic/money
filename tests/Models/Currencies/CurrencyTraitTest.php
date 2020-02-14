@@ -12,12 +12,15 @@ class CurrencyTraitTest extends AbstractTest
 {
     /**
      * @dataProvider dataMoneyHTMLFormat
+     * @param $data
+     * @param $amount
+     * @param $expected
      */
     public function testMoneyHTMLFormat($data, $amount, $expected)
     {
         $currency = new Currency();
         $currency->writeData($data);
-        $this->assertSame($expected, $currency->moneyHTMLFormat($amount));
+        static::assertSame($expected, $currency->moneyHTMLFormat($amount));
     }
 
     /**
@@ -29,11 +32,21 @@ class CurrencyTraitTest extends AbstractTest
             [
                 ['position' => '', 'symbol' => 'lei'],
                 '100',
-                '<span class="price" content="100"><span class="money-int">100</span><sup class="money-decimal">.00</sup> <span class="money-currency">lei</span></span>',
+                '<span class="price" content="100.0"><span class="money-int">100</span><sup class="money-decimal">.00</sup> <span class="money-currency">lei</span></span>',
+            ],
+            [
+                ['position' => '', 'symbol' => 'lei'],
+                100,
+                '<span class="price" content="100.0"><span class="money-int">100</span><sup class="money-decimal">.00</sup> <span class="money-currency">lei</span></span>',
             ],
             [
                 ['position' => '', 'symbol' => 'lei'],
                 '100.05',
+                '<span class="price" content="100.05"><span class="money-int">100</span><sup class="money-decimal">.05</sup> <span class="money-currency">lei</span></span>',
+            ],
+            [
+                ['position' => '', 'symbol' => 'lei'],
+                100.05,
                 '<span class="price" content="100.05"><span class="money-int">100</span><sup class="money-decimal">.05</sup> <span class="money-currency">lei</span></span>',
             ],
             [

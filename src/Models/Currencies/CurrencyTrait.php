@@ -26,6 +26,8 @@ trait CurrencyTrait
      */
     public function moneyHTMLFormat($amount)
     {
+        $amount = strpos($amount, '.') !== false ? $amount : $amount . '.0';
+
         list($integerValue, $decimalValue) = explode('.', $amount);
         $intHTML = '<span class="money-int">'.number_format($integerValue).'</span>';
 
