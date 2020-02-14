@@ -13,7 +13,7 @@
       "ByTIC\\Money\\": "src"
     },
     "files": [
-      "src/functions/general.php",
+      "src/functions/general.php"
     ]
   },
   "autoload-dev": {
