@@ -2,12 +2,11 @@
 
 namespace ByTIC\Money\Models\Currencies;
 
-use ByTIC\Money\Models\Currencies\CurrencyTrait as Currencies;
 use ByTIC\Money\Models\Currencies\CurrenciesTrait as Currency;
+use ByTIC\Money\Models\Currencies\CurrencyTrait as Currencies;
 
 /**
- * Class HasCurrencyRecord
- * @package ByTIC\Common\Application\Models\Currencies\Traits
+ * Class HasCurrencyRecord.
  */
 trait HasCurrencyRecord
 {
@@ -21,6 +20,7 @@ trait HasCurrencyRecord
         if ($this->currencyObject === null) {
             $this->initCurrency();
         }
+
         return $this->currencyObject;
     }
 

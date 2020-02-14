@@ -3,15 +3,12 @@
 namespace ByTIC\Money\Models\Currencies\Traits\HasCurrencyCode;
 
 /**
- * Class RecordTrait
+ * Class RecordTrait.
  *
  * @property string $currency_code
- *
- * @package ByTIC\Money\Models\Currencies\Traits\HasCurrencyCode
  */
 trait RecordTrait
 {
-
     protected $_currency = null;
 
     /**
@@ -30,6 +27,7 @@ trait RecordTrait
         if ($this->_currency === null) {
             $this->initCurrency();
         }
+
         return $this->_currency;
     }
 
@@ -57,6 +55,7 @@ trait RecordTrait
 
     /**
      * @param $code
+     *
      * @return $this
      */
     public function setCurrencyCode($code)
@@ -66,6 +65,7 @@ trait RecordTrait
             $this->currency_code = $code;
             $this->_currency = $c;
         }
+
         return $this;
     }
 

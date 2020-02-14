@@ -3,7 +3,7 @@
 namespace ByTIC\Money\Models\Currencies;
 
 /**
- * trait CurrenciesTrait
+ * trait CurrenciesTrait.
  *
  * @method CurrencyTrait[] getAll()
  * @method CurrencyTrait findByCode($code)
@@ -14,6 +14,7 @@ trait CurrenciesTrait
      * @param $from
      * @param $to
      * @param $amount
+     *
      * @return float|int
      */
     public function convert($from, $to, $amount)
@@ -27,6 +28,7 @@ trait CurrenciesTrait
 
     /**
      * @param $code
+     *
      * @return CurrencyTrait
      */
     public function getByCode($code)
@@ -36,6 +38,7 @@ trait CurrenciesTrait
 
     /**
      * @param $id
+     *
      * @return CurrencyTrait
      */
     abstract public function findOne($id);
