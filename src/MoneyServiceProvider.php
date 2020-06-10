@@ -4,6 +4,7 @@ namespace ByTIC\Money;
 
 use ByTIC\Assets\Encore\EntrypointLookupFactory;
 use ByTIC\Assets\Encore\EntrypointsCollection;
+use ByTIC\Money\Formatter\Manager;
 use Money\Currencies\ISOCurrencies;
 use Nip\Container\ServiceProviders\Providers\AbstractSignatureServiceProvider;
 use Symfony\Component\Asset\Package;
@@ -34,6 +35,7 @@ class MoneyServiceProvider extends AbstractSignatureServiceProvider
     {
         $this->registerCurrencies();
         $this->registerCurrency();
+        $this->registerFormatter();
     }
 
     protected function registerCurrencies()
@@ -46,6 +48,13 @@ class MoneyServiceProvider extends AbstractSignatureServiceProvider
     protected function registerCurrency()
     {
         $this->getContainer()->share('money.currency', function () {
+        });
+    }
+
+    protected function registerFormatter()
+    {
+        $this->getContainer()->share('money.formatter', function () {
+            return Manager::instance();
         });
     }
 }
