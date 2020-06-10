@@ -14,11 +14,24 @@ if (!function_exists('currencyManager')) {
     }
 }
 
+if (!function_exists('money_formatter')) {
+    /**
+     * @return \ByTIC\Money\Formatter\Manager
+     */
+    function money_formatter()
+    {
+        if (function_exists('app') && app() instanceof Nip\Container\Container) {
+            return app('money.formatter');
+        }
+
+        return \ByTIC\Money\Formatter\Manager::instance();
+    }
+}
 
 if (!function_exists('money_format')) {
     function money_format($format, $number)
     {
-        $regex = '/%((?:[\^!\-]|\+|\(|\=.)*)([0-9]+)?'.
+        $regex = '/%((?:[\^!\-]|\+|\(|\=.)*)([0-9]+)?' .
             '(?:#([0-9]+))?(?:\.([0-9]+))?([in%])/';
         if (setlocale(LC_MONETARY, 0) == 'C') {
             setlocale(LC_MONETARY, '');
@@ -71,8 +84,8 @@ if (!function_exists('money_format')) {
                     break;
             }
             if (!$flags['nosimbol']) {
-                $currency = $cprefix.
-                    ($conversion == 'i' ? $locale['int_curr_symbol'] : $locale['currency_symbol']).
+                $currency = $cprefix .
+                    ($conversion == 'i' ? $locale['int_curr_symbol'] : $locale['currency_symbol']) .
                     $csuffix;
             } else {
                 $currency = '';
@@ -85,13 +98,13 @@ if (!function_exists('money_format')) {
 
             $n = strlen($prefix) + strlen($currency) + strlen($value[0]);
             if ($left > 0 && $left > $n) {
-                $value[0] = str_repeat($flags['fillchar'], $left - $n).$value[0];
+                $value[0] = str_repeat($flags['fillchar'], $left - $n) . $value[0];
             }
             $value = implode($locale['mon_decimal_point'], $value);
             if ($locale["{$letter}_cs_precedes"]) {
-                $value = $prefix.$currency.$space.$value.$suffix;
+                $value = $prefix . $currency . $space . $value . $suffix;
             } else {
-                $value = $prefix.$value.$space.$currency.$suffix;
+                $value = $prefix . $value . $space . $currency . $suffix;
             }
             if ($width > 0) {
                 $value = str_pad($value, $width, $flags['fillchar'], $flags['isleft'] ?
