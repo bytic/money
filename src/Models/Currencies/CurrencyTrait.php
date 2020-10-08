@@ -16,7 +16,7 @@ trait CurrencyTrait
      */
     public function getCode()
     {
-        return $this->code;
+        return $this->getAttributeFromArray('code');
     }
 
     /**

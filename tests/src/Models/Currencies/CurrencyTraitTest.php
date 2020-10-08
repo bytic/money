@@ -10,13 +10,23 @@ use ByTIC\Money\Tests\Fixtures\Currencies\Currency;
  */
 class CurrencyTraitTest extends AbstractTest
 {
+
+    public function test_getCode()
+    {
+        $currency = new Currency();
+        $currency->code = 'RON';
+
+        self::assertSame('RON', $currency->code);
+        self::assertSame('RON', $currency->getCode());
+    }
+
     /**
-     * @dataProvider dataMoneyHTMLFormat
+     * @dataProvider data_MoneyHTMLFormat
      * @param $data
      * @param $amount
      * @param $expected
      */
-    public function testMoneyHTMLFormat($data, $amount, $expected)
+    public function test_MoneyHTMLFormat($data, $amount, $expected)
     {
         $currency = new Currency();
         $currency->writeData($data);
@@ -26,7 +36,7 @@ class CurrencyTraitTest extends AbstractTest
     /**
      * @return array
      */
-    public function dataMoneyHTMLFormat()
+    public function data_MoneyHTMLFormat(): array
     {
         return [
             [

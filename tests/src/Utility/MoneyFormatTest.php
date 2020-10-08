@@ -1,7 +1,8 @@
 <?php
 
-namespace ByTIC\Money\Tests;
+namespace ByTIC\Money\Tests\Utility;
 
+use ByTIC\Money\Tests\AbstractTest;
 use ByTIC\Money\Utility\MoneyFormat;
 
 /**

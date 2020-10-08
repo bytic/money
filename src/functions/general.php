@@ -21,7 +21,9 @@ if (!function_exists('money_formatter')) {
     function money_formatter()
     {
         if (function_exists('app') && app() instanceof Nip\Container\Container) {
-            return app('money.formatter');
+            if (app()->has('money.formatter')) {
+                return app('money.formatter');
+            }
         }
 
         return \ByTIC\Money\Formatter\Manager::instance();
