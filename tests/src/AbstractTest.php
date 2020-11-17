@@ -9,4 +9,5 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class AbstractTest extends TestCase
 {
+    use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 }

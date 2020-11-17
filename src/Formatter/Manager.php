@@ -24,7 +24,9 @@ class Manager
      */
     public function get($name)
     {
-        $this->formatters[$name] = isset($this->formatters[$name]) ?: $this->resolve($name);
+        if (!isset($this->formatters[$name])) {
+            $this->formatters[$name] = $this->resolve($name);
+        }
         return $this->formatters[$name];
     }
 
