@@ -16,7 +16,7 @@ class MoneyFormat
      */
     public static function html($value, $currency = null)
     {
-        $money = Money::create($value, $currency);
+        $money = $value instanceof Money ? $value : Money::create($value, $currency);
         return money_formatter()->get('html')->format($money);
     }
 }
