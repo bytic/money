@@ -2,8 +2,6 @@
 
 namespace ByTIC\Money\Utility;
 
-use ByTIC\Money\Formatter\HtmlFormatter;
-
 /**
  * Class MoneyFormat
  * @package ByTIC\Money\Utility
@@ -16,7 +14,7 @@ class MoneyFormat
      */
     public static function html($value, $currency = null)
     {
-        $money = $value instanceof Money ? $value : Money::create($value, $currency);
+        $money = $value instanceof \Money\Money ? $value : Money::create($value, $currency);
         return money_formatter()->get('html')->format($money);
     }
 }
