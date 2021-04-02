@@ -14,7 +14,8 @@ class MoneyFormat
      */
     public static function html($value, $currency = null)
     {
-        $money = $value instanceof \Money\Money ? $value : Money::create($value, $currency);
-        return money_formatter()->get('html')->format($money);
+        $currency = \ByTIC\Money\Money::currency($currency);
+        $money = \ByTIC\Money\Money::parse($value, $currency);
+        return $money->formatBy('html');
     }
 }

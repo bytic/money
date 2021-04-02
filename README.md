@@ -14,3 +14,5 @@
 
 
 
+### INSPIRATION
+* https://github.com/cknow/laravel-money/

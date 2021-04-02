@@ -19,13 +19,14 @@ use Symfony\WebpackEncoreBundle\Asset\TagRenderer;
  */
 class MoneyServiceProvider extends AbstractSignatureServiceProvider
 {
+    public const MONEY_CURRENCIES = 'money.currencies';
     /**
      * @inheritDoc
      */
     public function provides()
     {
         return [
-            'money.currencies',
+            self::MONEY_CURRENCIES,
             'money.currency',
             'money.formatter',
         ];
@@ -40,7 +41,7 @@ class MoneyServiceProvider extends AbstractSignatureServiceProvider
 
     protected function registerCurrencies()
     {
-        $this->getContainer()->share('money.currencies', function () {
+        $this->getContainer()->share(self::MONEY_CURRENCIES, function () {
             return new ISOCurrencies();
         });
     }

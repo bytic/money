@@ -16,35 +16,48 @@ class Money
      */
     public static function fromFloat($value, $currency = null)
     {
-        $currency = static::currency($currency);
-        return new \Money\Money($value*100, $currency);
+        $value = floatval($value);
+        return \ByTIC\Money\Money::parse($value, $currency);
     }
 
     /**
      * @param $value
      * @param null $currency
+     * @deprecated use ByTIC\Money\Money::currency
      */
     public static function create($value, $currency = null)
     {
-        $currency = static::currency($currency);
-        return new \Money\Money($value, $currency);
+        $currency = \ByTIC\Money\Money::currency($currency);
+        return \ByTIC\Money\Money::parseByDecimal($value, $currency);
     }
 
     /**
      * @param $code
      * @return Currency
+     * @deprecated use ByTIC\Money\Money::currency
      */
     public static function currency($code = null)
     {
-        $code = $code ?: static::currencyDefault();
-        return new Currency($code);
+        return \ByTIC\Money\Money::currency($code);
     }
 
     /**
      * @return string
+     * @deprecated use ByTIC\Money\Money::currencyDefault
      */
     public static function currencyDefault()
     {
-        return 'RON';
+        return \ByTIC\Money\Money::currencyDefault();
+    }
+
+    /**
+     * Get currencies.
+     *
+     * @return \Money\Currencies
+     * @deprecated use ByTIC\Money\Money::getCurrencies
+     */
+    public static function getCurrencies()
+    {
+        return \ByTIC\Money\Money::getCurrencies();
     }
 }
