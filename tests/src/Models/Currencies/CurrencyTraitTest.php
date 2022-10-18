@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace ByTIC\Money\Tests\Models\Currencies;
 
@@ -42,12 +43,12 @@ class CurrencyTraitTest extends AbstractTest
             [
                 ['position' => '', 'symbol' => 'lei'],
                 '100',
-                '<span class="price" content="100.0"><span class="money-int">100</span><sup class="money-decimal">.00</sup> <span class="money-currency">lei</span></span>',
+                '<span class="price" content="100.00"><span class="money-int">100</span><sup class="money-decimal">.00</sup> <span class="money-currency">lei</span></span>',
             ],
             [
                 ['position' => '', 'symbol' => 'lei'],
                 100,
-                '<span class="price" content="100.0"><span class="money-int">100</span><sup class="money-decimal">.00</sup> <span class="money-currency">lei</span></span>',
+                '<span class="price" content="100.00"><span class="money-int">100</span><sup class="money-decimal">.00</sup> <span class="money-currency">lei</span></span>',
             ],
             [
                 ['position' => '', 'symbol' => 'lei'],
@@ -62,6 +63,11 @@ class CurrencyTraitTest extends AbstractTest
             [
                 ['position' => '', 'symbol' => 'lei'],
                 '1123.40',
+                '<span class="price" content="1123.40"><span class="money-int">1,123</span><sup class="money-decimal">.40</sup> <span class="money-currency">lei</span></span>',
+            ],
+                        [
+                ['position' => '', 'symbol' => 'lei'],
+                1123.40,
                 '<span class="price" content="1123.40"><span class="money-int">1,123</span><sup class="money-decimal">.40</sup> <span class="money-currency">lei</span></span>',
             ],
         ];

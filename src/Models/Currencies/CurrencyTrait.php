@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace ByTIC\Money\Models\Currencies;
 
@@ -26,12 +27,13 @@ trait CurrencyTrait
      */
     public function moneyHTMLFormat($amount)
     {
-        $amount = strpos($amount, '.') !== false ? $amount : $amount . '.0';
+        $amount = floatval($amount);
+        $integerValue = floor($amount);
+        $decimalValue = round(($amount - $integerValue) * 100);
 
-        list($integerValue, $decimalValue) = explode('.', $amount);
         $intHTML = '<span class="money-int">'.number_format($integerValue).'</span>';
 
-        $decimalValue = str_pad($decimalValue, 2, '0', STR_PAD_LEFT);
+        $decimalValue = str_pad(strval($decimalValue), 2, '0', STR_PAD_LEFT);
         $decimalHTML = '<sup class="money-decimal">.'.$decimalValue.'</sup>';
 
         $return = $intHTML.$decimalHTML;
@@ -43,6 +45,6 @@ trait CurrencyTrait
             $return .= ' '.$symbolHTML;
         }
 
-        return '<span class="price" content="'.$amount.'">'.$return.'</span>';
+        return '<span class="price" content="'.number_format($amount,2,'.','').'">'.$return.'</span>';
     }
 }
