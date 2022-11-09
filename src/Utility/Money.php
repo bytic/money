@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace ByTIC\Money\Utility;
 
@@ -17,6 +18,16 @@ class Money
     public static function fromFloat($value, $currency = null)
     {
         $value = floatval($value);
+        return \ByTIC\Money\Money::parse($value, $currency);
+    }
+
+    /**
+     * @param $value
+     * @param null $currency
+     */
+    public static function fromCents($value, $currency = null): ?\ByTIC\Money\Money
+    {
+        $value = intval($value);
         return \ByTIC\Money\Money::parse($value, $currency);
     }
 

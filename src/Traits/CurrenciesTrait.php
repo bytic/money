@@ -51,7 +51,7 @@ trait CurrenciesTrait
     {
         if (!isset(static::$currency)) {
             static::setDefaultCurrency(
-                PackageConfig::defaultCurrency()
+                PackageConfig::defaultCurrency('USD')
             );
         }
         return static::$currency;

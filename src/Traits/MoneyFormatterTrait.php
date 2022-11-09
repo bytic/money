@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace ByTIC\Money\Traits;
 
@@ -74,6 +75,11 @@ trait MoneyFormatterTrait
         $formatter = new DecimalMoneyFormatter($currencies ?: static::getCurrencies());
 
         return $this->formatByFormatter($formatter);
+    }
+
+    public function formatByHtml(): string
+    {
+        return $this->formatBy('html');
     }
 
     /**

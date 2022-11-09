@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace ByTIC\Money\Traits;
 
@@ -25,9 +26,9 @@ trait MoneyParserTrait
     /**
      * Convert the given value into an instance of Money.
      *
-     * @param mixed                       $value
+     * @param mixed $value
      * @param \Money\Currency|string|null $currency
-     * @param iny                         $bitCointDigits
+     * @param iny $bitCointDigits
      *
      * @return \ByTIC\Money\Money|null
      */
@@ -60,13 +61,13 @@ trait MoneyParserTrait
         }
 
         if (is_float($value)) {
-            return static::parseByDecimal((string) $value, $currency);
+            return static::parseByDecimal((string)$value, $currency);
         }
 
         throw new InvalidArgumentException(sprintf('Invalid value: %s', json_encode($value)));
     }
 
-    protected static function parseNonFloatStrings($value,$currency = null, $bitCointDigits = 2)
+    protected static function parseNonFloatStrings($value, $currency = null, $bitCointDigits = 2)
     {
         $locale = static::getLocale();
         $currencies = static::getCurrencies();
@@ -88,8 +89,8 @@ trait MoneyParserTrait
     /**
      * Parse by aggregate.
      *
-     * @param string        $money
-     * @param string|null   $forceCurrency
+     * @param string $money
+     * @param string|null $forceCurrency
      * @param MoneyParser[] $parsers
      *
      * @return \ByTIC\Money\Money
@@ -104,9 +105,9 @@ trait MoneyParserTrait
     /**
      * Parse by bitcoin.
      *
-     * @param string      $money
+     * @param string $money
      * @param string|null $forceCurrency
-     * @param int         $fractionDigits
+     * @param int $fractionDigits
      *
      * @return \ByTIC\Money\Money
      */
@@ -120,8 +121,8 @@ trait MoneyParserTrait
     /**
      * Parse by decimal.
      *
-     * @param string            $money
-     * @param string|null       $forceCurrency
+     * @param string $money
+     * @param string|null $forceCurrency
      * @param \Money\Currencies $currencies
      *
      * @return \ByTIC\Money\Money
@@ -130,17 +131,17 @@ trait MoneyParserTrait
     {
         $parser = new DecimalMoneyParser($currencies ?: static::getCurrencies());
 
-        return static::parseByParser($parser,(string) $money, $forceCurrency);
+        return static::parseByParser($parser, (string)$money, $forceCurrency);
     }
 
     /**
      * Parse by intl.
      *
-     * @param string            $money
-     * @param string|null       $forceCurrency
-     * @param string|null       $locale
+     * @param string $money
+     * @param string|null $forceCurrency
+     * @param string|null $locale
      * @param \Money\Currencies $currencies
-     * @param int               $style
+     * @param int $style
      *
      * @return \ByTIC\Money\Money
      */
@@ -160,11 +161,11 @@ trait MoneyParserTrait
     /**
      * Parse by intl localized decimal.
      *
-     * @param string            $money
-     * @param string            $forceCurrency
-     * @param string|null       $locale
+     * @param string $money
+     * @param string $forceCurrency
+     * @param string|null $locale
      * @param \Money\Currencies $currencies
-     * @param int               $style
+     * @param int $style
      *
      * @return \ByTIC\Money\Money
      */
@@ -185,8 +186,8 @@ trait MoneyParserTrait
      * Parse by parser.
      *
      * @param \Money\MoneyParser $parser
-     * @param string             $money
-     * @param string|null        $forceCurrency
+     * @param string $money
+     * @param string|null $forceCurrency
      *
      * @return \ByTIC\Money\Money
      */

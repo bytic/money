@@ -23,7 +23,7 @@
     }
   },
   "require": {
-    "php": ">=7.1",
+    "php": "^7.4|^8.0",
     "ext-json": "*",
     "ext-intl": "*",
     "bytic/container": "^1.0|^2.0",
