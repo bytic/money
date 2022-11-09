@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace ByTIC\Money;
 
@@ -19,6 +20,8 @@ use Symfony\WebpackEncoreBundle\Asset\TagRenderer;
  */
 class MoneyServiceProvider extends AbstractSignatureServiceProvider
 {
+    public const NAME = 'money';
+
     public const MONEY_CURRENCIES = 'money.currencies';
     /**
      * @inheritDoc

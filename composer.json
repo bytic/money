@@ -27,6 +27,7 @@
     "ext-json": "*",
     "ext-intl": "*",
     "bytic/container": "^1.0|^2.0",
+    "bytic/config": "^1.0|^2.0",
     "bytic/utility": "^1.0",
     "moneyphp/money": "^3.3"
   },

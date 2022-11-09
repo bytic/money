@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace ByTIC\Money\Traits;
 
 use ByTIC\Money\MoneyServiceProvider;
+use ByTIC\Money\Utility\PackageConfig;
 use InvalidArgumentException;
 use Money\Currencies;
 use Money\Currency;
@@ -47,7 +49,22 @@ trait CurrenciesTrait
      */
     public static function currencyDefault()
     {
-        return 'USD';
+        if (!isset(static::$currency)) {
+            static::setDefaultCurrency(
+                PackageConfig::defaultCurrency()
+            );
+        }
+        return static::$currency;
+    }
+
+    /**
+     * Set default currency.
+     *
+     * @param string $currency
+     */
+    public static function setDefaultCurrency($currency)
+    {
+        static::$currency = $currency;
     }
 
     /**
@@ -123,9 +140,9 @@ trait CurrenciesTrait
      * @param \Money\Currencies $currencies
      * @param string $sourceName
      *
+     * @return \Money\Currencies
      * @throws \InvalidArgumentException
      *
-     * @return \Money\Currencies
      */
     private static function makeCurrenciesForSource($config, Currencies $currencies, $sourceName)
     {
