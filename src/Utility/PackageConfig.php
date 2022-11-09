@@ -27,6 +27,6 @@ class PackageConfig extends \ByTIC\PackageBase\Utility\PackageConfig
      */
     public static function defaultCurrency($default = null): ?string
     {
-        return (string)static::instance()->get('money.defaultCurrency', $default);
+        return (string)static::instance()->get('defaultCurrency', $default);
     }
 }
