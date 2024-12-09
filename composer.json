@@ -34,7 +34,8 @@
   "require-dev": {
     "bytic/phpqatools": "^1.0",
     "mockery/mockery": "^1.0",
-    "bytic/orm": "^0.9 || ^1.0"
+    "bytic/orm": "^0.9 || ^1.0 || ^2.0",
+    "bytic/helpers": "^2.0"
   },
   "scripts": {
     "tests": [
@@ -50,5 +51,10 @@
     ],
     "stan": "phpstan analyse",
     "psalm": "psalm --output-format=compact --find-dead-code --find-unused-psalm-suppress --long-progress "
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
