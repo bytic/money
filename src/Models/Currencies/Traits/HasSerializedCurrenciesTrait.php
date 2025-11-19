@@ -1,8 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace ByTIC\Money\Models\Currencies\Traits;
 
+use ByTIC\Money\Currencies\Actions\InitCurrency;
 use ByTIC\Money\Models\Currencies\CurrencyTrait;
+use Money\Currency;
 
 /**
  * Class HasSerializedCurrenciesTrait.
@@ -12,7 +15,7 @@ use ByTIC\Money\Models\Currencies\CurrencyTrait;
 trait HasSerializedCurrenciesTrait
 {
     /**
-     * @var null|CurrencyTrait[]
+     * @var null|Currency[]
      */
     protected $currenciesModels = null;
     /**
@@ -21,19 +24,20 @@ trait HasSerializedCurrenciesTrait
     protected $currenciesArray = null;
 
     /**
-     * @param CurrencyTrait $currency
+     * @param Currency $currency
      *
      * @return bool
      */
     public function supportsCurrency($currency)
     {
+        $currency = InitCurrency::from($currency);
         $currencies = $this->getCurrenciesModels();
 
-        return isset($currencies[$currency->code]);
+        return isset($currencies[$currency->getCode()]);
     }
 
     /**
-     * @return null|CurrencyTrait[]
+     * @return null|Currency[]
      */
     public function getCurrenciesModels()
     {
@@ -56,7 +60,7 @@ trait HasSerializedCurrenciesTrait
     /**
      * @return null|array
      */
-    public function getCurrenciesArray()
+    public function getCurrenciesArray(): ?array
     {
         if ($this->currenciesArray === null) {
             $this->initCurrenciesArray();
@@ -85,10 +89,10 @@ trait HasSerializedCurrenciesTrait
 
     /**
      * @param string $code
-     * @return CurrencyTrait
+     * @return Currency
      */
     public function initCurrency($code)
     {
-        return currencyManager()->getByCode($code);
+        return InitCurrency::from($code);
     }
 }
