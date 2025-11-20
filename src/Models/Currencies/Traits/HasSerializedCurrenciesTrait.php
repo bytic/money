@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace ByTIC\Money\Models\Currencies\Traits;
 
 use ByTIC\Money\Currencies\Actions\InitCurrency;
-use ByTIC\Money\Models\Currencies\CurrencyTrait;
 use Money\Currency;
 
 /**
@@ -77,8 +76,13 @@ trait HasSerializedCurrenciesTrait
         $this->currenciesArray = $c;
     }
 
-    public function initCurrenciesArray()
+    public function initCurrenciesArray(): void
     {
+        $currenciesSerialized = $this->currencies;
+        if (empty($currenciesSerialized)) {
+            $this->currenciesArray = [];
+            return;
+        }
         $this->currenciesArray = unserialize($this->currencies);
     }
 
