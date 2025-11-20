@@ -74,6 +74,7 @@ trait HasSerializedCurrenciesTrait
     public function setCurrenciesArray($c)
     {
         $this->currenciesArray = $c;
+        $this->serializeCurrencies();
     }
 
     public function initCurrenciesArray(): void
