@@ -17,6 +17,9 @@ class InitCurrency
         if ($currency instanceof Currency) {
             return $currency;
         }
+        if (is_object($currency) && method_exists($currency, 'getCode')) {
+            return new Currency($currency->getCode());
+        }
         if (is_string($currency)) {
             return new Currency($currency);
         }
