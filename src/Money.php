@@ -13,6 +13,7 @@ class Money
     use Traits\CurrenciesTrait;
     use Traits\HasMoneyTrait;
     use Traits\HasStaticFunctions;
+    use Traits\HasTransformersTrait;
     use Traits\LocaleTrait;
     use Traits\MoneyFactory {
         Traits\MoneyFactory::__callStatic as factoryCallStatic;
