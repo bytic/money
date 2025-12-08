@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ByTIC\Money\Traits;
 
+use ByTIC\Money\Currencies\Actions\InitCurrency;
 use ByTIC\Money\MoneyServiceProvider;
 use ByTIC\Money\Utility\PackageConfig;
 use InvalidArgumentException;
@@ -37,6 +38,7 @@ trait CurrenciesTrait
      */
     public static function currency($code = null)
     {
+        $code = InitCurrency::from($code);
         if ($code instanceof Currency) {
             return $code;
         }
